@@ -43,7 +43,6 @@ export default function TradeForm({
 
     setIsSubmitting(true)
     try {
-      // Use the new SDK functions with perception data
       const amountNum = parseFloat(amount)
       const payload = isYes
         ? buyYesPayload(marketId, amountNum, agreementPercentage)
@@ -78,22 +77,21 @@ export default function TradeForm({
     }
   }
 
-  // Only show "connect wallet" if truly not connected
   if (!connected || !account) {
     return (
-      <div className="p-6 border-2 border-dashed border-gray-300 rounded-lg text-center">
-        <p className="text-gray-500">Please connect your Aptos wallet to trade</p>
+      <div className="p-6 border-2 border-dashed border-gray-300 rounded-lg text-center text-black">
+        <p>Please connect your Aptos wallet to trade</p>
       </div>
     )
   }
 
   return (
-    <div className="bg-white border-2 border-gray-200 rounded-lg p-6 shadow-lg">
+    <div className="bg-white border-2 border-gray-200 rounded-lg p-6 shadow-lg text-black">
       <h3 className="text-lg font-semibold mb-4">Trade Prediction</h3>
 
-      <form onSubmit={handleTrade} className="space-y-4">
+      <form onSubmit={handleTrade} className="space-y-4 text-black">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium mb-2">
             Prediction
           </label>
           <div className="flex space-x-2">
@@ -101,7 +99,7 @@ export default function TradeForm({
               type="button"
               onClick={() => setIsYes(true)}
               className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                isYes ? 'bg-green-500 text-white' : 'bg-gray-200 text-gray-700'
+                isYes ? 'bg-green-500 text-black' : 'bg-gray-200 text-black'
               }`}
             >
               YES
@@ -110,7 +108,7 @@ export default function TradeForm({
               type="button"
               onClick={() => setIsYes(false)}
               className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                !isYes ? 'bg-red-500 text-white' : 'bg-gray-200 text-gray-700'
+                !isYes ? 'bg-red-500 text-black' : 'bg-gray-200 text-black'
               }`}
             >
               NO
@@ -119,7 +117,7 @@ export default function TradeForm({
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium mb-2">
             Amount (uUSD)
           </label>
           <input
@@ -127,7 +125,7 @@ export default function TradeForm({
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
             placeholder="Enter amount"
-            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-400 focus:border-transparent"
+            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-400 focus:border-transparent text-black"
             required
             min="0.01"
             step="0.01"
@@ -135,21 +133,21 @@ export default function TradeForm({
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium mb-2">
             Slippage Tolerance (%)
           </label>
           <input
             type="number"
             value={slippage}
             onChange={(e) => setSlippage(Number(e.target.value))}
-            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-400 focus:border-transparent"
+            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-400 focus:border-transparent text-black"
             min="0.1"
             max="50"
             step="0.1"
           />
         </div>
 
-        <div className="bg-neutral-900/10 p-4 rounded-lg">
+        <div className="bg-gray-100 p-4 rounded-lg text-black">
           <div className="flex justify-between text-sm">
             <span>Current Price:</span>
             <span className="font-medium">--</span>
